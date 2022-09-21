@@ -90,6 +90,9 @@ public class economy implements CommandExecutor {
                             player.sendMessage(Component.text("Sorry, but you don't have enough diamonds in your account to withdraw.", NamedTextColor.RED));
                         } else if (player.getInventory().firstEmpty() == -1) {
                             player.sendMessage(Component.text("Sorry, but you don't have enough space in your inventory to deposit.", NamedTextColor.RED));
+                            world.dropItem(player.getLocation().add(new Vector(0, 0.5, 0)), drop);
+                            drop.setAmount(Integer.parseInt(args[0]));
+                            drop.setType(Material.DIAMOND);
                         } else {
                             Economy.subtract(uuid, BigDecimal.valueOf(Long.parseLong(args[0])));
                             SmpCoreApi.giveItemMaterial(player, Material.DIAMOND, Integer.parseInt(args[0]));
